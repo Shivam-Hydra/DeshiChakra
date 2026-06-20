@@ -242,22 +242,15 @@
       <header class="site-header">
         <div class="site-shell topbar">
           <a class="brand" href="index.html" aria-label="Deshi Chakra home">
-            <img src="assets/logo.svg" alt="">
-            <span>
-              <span class="brand-title">DESHI<br>CHAKRA</span>
-              <span class="brand-kicker">A Self-Sustaining,<br>AI-Powered Agri Ecosystem</span>
-            </span>
+            <img src="assets/deshi-chakra-circular-logo.png" alt="">
+            <span class="brand-title">DESHI<br>CHAKRA</span>
+            <span class="brand-separator"></span>
+            <span class="brand-kicker">A Self-Sustaining,<br>AI-Powered Agri Ecosystem</span>
           </a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open navigation">${icon("menu")}</button>
           <nav class="site-nav" id="main-nav" aria-label="Main navigation">
             ${navItems.map(item => `<a class="${item.key === activeKey ? "is-active" : ""}" href="${item.href}">${item.label}</a>`).join("")}
           </nav>
-          <div class="proof-badges" aria-label="Core strengths">
-            <div class="proof-badge">${icon("leaf")}Sustainable</div>
-            <div class="proof-badge">${icon("recycle")}Circular</div>
-            <div class="proof-badge">${icon("brain")}AI Powered</div>
-            <div class="proof-badge">${icon("chart")}Profitable</div>
-          </div>
         </div>
       </header>
     `;

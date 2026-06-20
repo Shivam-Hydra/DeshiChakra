@@ -63,8 +63,8 @@ input {
 }
 
 .topbar {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 24px;
   min-height: 88px;
@@ -73,30 +73,37 @@ input {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 13px;
-  min-width: 250px;
+  gap: 16px;
 }
 
 .brand img {
-  width: 54px;
-  height: 54px;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
 }
 
 .brand-title {
   display: block;
   font-size: 1.45rem;
-  line-height: .9;
+  line-height: .95;
   font-weight: 900;
   letter-spacing: 0;
   color: var(--green-950);
 }
 
+.brand-separator {
+  display: block;
+  width: 1px;
+  height: 38px;
+  background-color: rgba(6, 63, 28, .2);
+}
+
 .brand-kicker {
   display: block;
-  margin-top: 7px;
   color: #3d3a2e;
   font-size: .78rem;
   font-weight: 700;
+  line-height: 1.25;
 }
 
 .site-nav {
@@ -1419,9 +1426,9 @@ p {
     font-size: 1.12rem;
   }
 
+  .brand-separator,
   .brand-kicker {
-    max-width: 190px;
-    font-size: .68rem;
+    display: none;
   }
 
   .site-nav {
