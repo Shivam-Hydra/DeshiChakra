@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" role="img" aria-label="India expansion map">
+  <rect width="700" height="560" rx="28" fill="#f5f3e9"/>
+  <path d="M304 56c58 24 80 52 79 86 0 22 16 38 43 47 33 11 52 28 57 51 4 19-5 34-27 46-18 10-24 26-17 49 11 36 1 70-31 101-21 20-32 41-32 64 0 37-19 56-56 57-30 1-50-14-60-44-9-28-31-46-66-54-32-7-46-25-42-55 4-31-8-59-36-84-33-30-39-61-18-92 17-25 20-53 10-84-12-37 1-64 40-82 39-18 70-19 92-3 21 15 42 14 64-3z" fill="#b7c9a1" stroke="#75925d" stroke-width="5"/>
+  <g fill="#0b4b23">
+    <circle cx="276" cy="130" r="8"/><circle cx="334" cy="151" r="8"/><circle cx="207" cy="172" r="8"/>
+    <circle cx="389" cy="212" r="8"/><circle cx="279" cy="229" r="8"/><circle cx="170" cy="257" r="8"/>
+    <circle cx="442" cy="286" r="8"/><circle cx="325" cy="301" r="8"/><circle cx="232" cy="339" r="8"/>
+    <circle cx="366" cy="385" r="8"/><circle cx="292" cy="432" r="8"/><circle cx="330" cy="488" r="8"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="23" fill="#173c20" font-weight="700">
+    <text x="484" y="130">Phase 1</text>
+    <text x="484" y="162" font-size="18" font-weight="400">1 - 5 Sites</text>
+    <text x="484" y="238">Phase 2</text>
+    <text x="484" y="270" font-size="18" font-weight="400">100+ Sites</text>
+    <text x="484" y="346">Phase 3</text>
+    <text x="484" y="378" font-size="18" font-weight="400">1000+ Sites</text>
+    <text x="484" y="454">Nationwide</text>
+    <text x="484" y="486" font-size="18" font-weight="400">Impact</text>
+  </g>
+  <g>
+    <circle cx="450" cy="122" r="16" fill="#8da63f"/><path d="M442 122h16M450 114v16" stroke="#fff" stroke-width="4"/>
+    <rect x="434" y="221" width="32" height="32" rx="6" fill="#e3a638"/><path d="M442 239h16M450 231v16" stroke="#fff" stroke-width="4"/>
+    <path d="M450 327l21 36h-42z" fill="#0b6b37"/><path d="M450 340v16" stroke="#fff" stroke-width="4"/>
+    <circle cx="450" cy="447" r="16" fill="#2f7379"/><path d="M441 447h18" stroke="#fff" stroke-width="4"/>
+  </g>
+</svg>

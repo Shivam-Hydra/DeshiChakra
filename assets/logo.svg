@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Deshi Chakra logo">
+  <rect width="120" height="120" rx="60" fill="#f7f4ea"/>
+  <circle cx="60" cy="60" r="51" fill="none" stroke="#063f1c" stroke-width="5"/>
+  <circle cx="60" cy="60" r="8" fill="#063f1c"/>
+  <g stroke="#063f1c" stroke-width="3.8" stroke-linecap="round">
+    <path d="M60 15v36"/>
+    <path d="M60 69v36"/>
+    <path d="M15 60h36"/>
+    <path d="M69 60h36"/>
+    <path d="M28.2 28.2l25.4 25.4"/>
+    <path d="M66.4 66.4l25.4 25.4"/>
+    <path d="M91.8 28.2L66.4 53.6"/>
+    <path d="M53.6 66.4L28.2 91.8"/>
+    <path d="M42 18.6l13.8 32"/>
+    <path d="M64.2 69.4l13.8 32"/>
+    <path d="M101.4 42L69.4 55.8"/>
+    <path d="M50.6 64.2L18.6 78"/>
+    <path d="M78 18.6l-13.8 32"/>
+    <path d="M55.8 69.4l-13.8 32"/>
+    <path d="M101.4 78L69.4 64.2"/>
+    <path d="M50.6 55.8L18.6 42"/>
+  </g>
+  <g fill="#8da63f">
+    <circle cx="60" cy="15" r="4"/>
+    <circle cx="105" cy="60" r="4"/>
+    <circle cx="60" cy="105" r="4"/>
+    <circle cx="15" cy="60" r="4"/>
+  </g>
+</svg>
