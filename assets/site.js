@@ -242,7 +242,7 @@
       <header class="site-header">
         <div class="site-shell topbar">
           <a class="brand" href="index.html" aria-label="Deshi Chakra home">
-            <img src="assets/deshi-chakra-circular-logo.png" alt="">
+            <img src="assets/logo.svg" alt="">
             <span class="brand-title">DESHI<br>CHAKRA</span>
             <span class="brand-separator"></span>
             <span class="brand-kicker">A Self-Sustaining,<br>AI-Powered Agri Ecosystem</span>
@@ -314,7 +314,7 @@
           ${sectionTitle("How Deshi Chakra Works", "A circular model where every unit supports the next.")}
           <div class="working-layout">
             <figure class="diagram-card">
-              <img src="assets/deshi-chakra-circular-logo.png" alt="Deshi Chakra circular ecosystem diagram">
+              <img src="assets/logo.svg" alt="Deshi Chakra circular ecosystem diagram">
             </figure>
             <div class="flow-band">
               <div class="flow-list">
