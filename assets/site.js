@@ -231,6 +231,9 @@
     renderFooter();
     bindNav();
     bindForms();
+    if (pageKey === "home") {
+      bindHomeAnimation();
+    }
   }
 
   function renderHeader(activeKey) {
@@ -672,6 +675,37 @@
       message.textContent = "Thank you. The investor deck request is ready to be processed.";
       form.reset();
     });
+  }
+
+  function bindHomeAnimation() {
+    const layout = document.querySelector(".working-layout");
+    if (!layout) return;
+
+    function onScroll() {
+      if (window.innerWidth <= 980) {
+        layout.style.removeProperty("--scroll-progress");
+        return;
+      }
+
+      const rect = layout.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      const startThreshold = viewportHeight * 0.95;
+      const endThreshold = viewportHeight * 0.30;
+
+      let progress = 0;
+      if (rect.top <= startThreshold) {
+        progress = (startThreshold - rect.top) / (startThreshold - endThreshold);
+        if (progress > 1) progress = 1;
+        if (progress < 0) progress = 0;
+      }
+
+      layout.style.setProperty("--scroll-progress", progress.toFixed(3));
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    onScroll();
   }
 
   document.addEventListener("DOMContentLoaded", init);

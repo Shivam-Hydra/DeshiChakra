@@ -452,6 +452,27 @@ p {
   object-fit: contain;
 }
 
+@media (min-width: 981px) {
+  .working-layout {
+    --scroll-progress: 1; /* Fallback to fully expanded */
+  }
+
+  .diagram-card {
+    position: relative;
+    z-index: 2;
+    transform: translateX(calc(61.1% * (1 - var(--scroll-progress))));
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .flow-band {
+    position: relative;
+    z-index: 1;
+    opacity: var(--scroll-progress);
+    transform: translateX(calc(-75% * (1 - var(--scroll-progress))));
+    transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.25s ease-out;
+  }
+}
+
 .flow-list {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
