@@ -690,7 +690,9 @@
               <span>Village ______ District ______ State ______</span>
               <span>India</span>
             </div>
-            <img src="assets/tiles/tile-smart-entry.jpg" alt="Deshi Chakra smart entry gate">
+            <div class="location-map-wrap">
+              <img src="assets/contact-location-map.png?v=1" alt="Deshi Chakra location map">
+            </div>
             <div class="social-panel">
               <h2>Follow Us</h2>
               <div class="social-icons" aria-label="Social links">

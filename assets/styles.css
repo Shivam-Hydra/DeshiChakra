@@ -1141,9 +1141,19 @@ p {
   text-transform: uppercase;
 }
 
-.location-panel img {
+.location-map-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 14px 0;
+}
+
+.location-map-wrap img {
+  width: 100%;
+  max-width: 340px;
   border: 1px solid var(--line);
   border-radius: 9px;
+  object-fit: cover;
+  display: block;
 }
 
 .address-lines {
