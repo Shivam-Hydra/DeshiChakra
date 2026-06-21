@@ -59,14 +59,14 @@
   ];
 
   const revenueStreams = [
-    { icon: "cow", title: "Dairy & Milk Production", text: "High-quality milk, animal health and managed dairy output.", visual: "linear-gradient(135deg,#d8d2be,#8b6f4d)", image: "assets/tiles/tile-smart-dairy-shed.jpg" },
-    { icon: "fish", title: "Fisheries & Aquaculture", text: "Solar water channels, oxygenated water flow and fish farming.", visual: "linear-gradient(135deg,#28747c,#8bc0b4)", image: "assets/tiles/tile-fish-channel.jpg" },
-    { icon: "greenhouse", title: "Greenhouse Produce", text: "Climate-controlled vegetables and premium produce.", visual: "linear-gradient(135deg,#2e7b43,#b1c85a)", image: "assets/tiles/tile-greenhouse.jpg" },
-    { icon: "leaf", title: "Fruit Orchards & Agro Produce", text: "Seasonal fruit, orchards and crop diversity.", visual: "linear-gradient(135deg,#715b22,#d6a337)", image: "assets/tiles/tile-fruit-belt.jpg" },
-    { icon: "factory", title: "Value Added Products", text: "Processing, packaging and local product development.", visual: "linear-gradient(135deg,#a46d43,#ecd4a1)", image: "assets/tiles/tile-dairy-processing.jpg" },
-    { icon: "market", title: "Retail & Farm Store", text: "On-site retail, direct pricing and consumer access.", visual: "linear-gradient(135deg,#94462c,#e2a24a)", image: "assets/tiles/tile-market.jpg" },
-    { icon: "truck", title: "E-Commerce & Delivery", text: "Transparent ordering, cold-chain movement and traceability.", visual: "linear-gradient(135deg,#3b5f63,#b8d4ca)", image: "assets/tiles/tile-ecommerce-delivery.jpg" },
-    { icon: "leaf", title: "Eco Tourism & Experience", text: "Learning visits, rural experiences and ecosystem tours.", visual: "linear-gradient(135deg,#4e7b3d,#d2c46a)", image: "assets/tiles/tile-eco-tourism.jpg" }
+    { icon: "cow", title: "Dairy & Milk Production", text: "High-quality milk, animal health and managed dairy output.", visual: "linear-gradient(135deg,#d8d2be,#8b6f4d)", image: "assets/dairy-revenue.png" },
+    { icon: "fish", title: "Fisheries & Aquaculture", text: "Solar water channels, oxygenated water flow and fish farming.", visual: "linear-gradient(135deg,#28747c,#8bc0b4)", image: "assets/fisheries-revenue.png" },
+    { icon: "greenhouse", title: "Greenhouse Produce", text: "Climate-controlled vegetables and premium produce.", visual: "linear-gradient(135deg,#2e7b43,#b1c85a)", image: "assets/greenhouse-revenue.png" },
+    { icon: "leaf", title: "Fruit Orchards & Agro Produce", text: "Seasonal fruit, orchards and crop diversity.", visual: "linear-gradient(135deg,#715b22,#d6a337)", image: "assets/orchards-revenue.png" },
+    { icon: "factory", title: "Value Added Products", text: "Processing, packaging and local product development.", visual: "linear-gradient(135deg,#a46d43,#ecd4a1)", image: "assets/valueadded-revenue.png" },
+    { icon: "leaf", title: "Eco Tourism", text: "Learning visits, rural experiences and ecosystem tours.", visual: "linear-gradient(135deg,#4e7b3d,#d2c46a)", image: "assets/eco-tourism-metric.png" },
+    { icon: "energy", title: "Energy", text: "Solar power integration for self-sustaining operations and surplus.", visual: "linear-gradient(135deg,#3b5f63,#b8d4ca)", image: "assets/energy-bolt.jpg" },
+    { icon: "dome", title: "Energy (Biogas)", text: "Renewable bio-gas from waste, lowering costs and providing organic manure.", visual: "linear-gradient(135deg,#94462c,#e2a24a)", image: "assets/dome-metric.png" }
   ];
 
   const impactStats = [
@@ -153,10 +153,10 @@
       ],
       cta: ["Partner With Us", "Explore Technology"],
       technologies: [
-        { icon: "monitor", title: "AI Command Center", text: "Real-time monitoring of livestock, energy, crops and operations.", visual: "linear-gradient(135deg,#062332,#18707d)", image: "assets/tiles/tile-ai-command-center.jpg" },
-        { icon: "sensor", title: "IoT Sensors", text: "Monitor livestock, water, fields, tanks and energy usage.", visual: "linear-gradient(135deg,#345c47,#9bc26e)", image: "assets/tiles/tile-impact-dashboard.jpg" },
-        { icon: "drone", title: "Drones", text: "Precision farming, crop health monitoring and mapping.", visual: "linear-gradient(135deg,#62859d,#d5e3d8)", image: "assets/tiles/tile-drone-farming.jpg" },
-        { icon: "water", title: "Smart Irrigation", text: "AI-based irrigation scheduling for water optimisation.", visual: "linear-gradient(135deg,#2f7379,#9ad1be)", image: "assets/tiles/tile-rainwater-harvesting.jpg" }
+        { icon: "monitor", title: "AI Command Center", text: "Real-time monitoring of livestock, energy, crops and operations.", visual: "linear-gradient(135deg,#062332,#18707d)", image: "assets/ai-command-center.jpg" },
+        { icon: "sensor", title: "IoT Sensors", text: "Monitor livestock, water, fields, tanks and energy usage.", visual: "linear-gradient(135deg,#345c47,#9bc26e)", image: "assets/iot-sensors.jpg" },
+        { icon: "drone", title: "Drones", text: "Precision farming, crop health monitoring and mapping.", visual: "linear-gradient(135deg,#62859d,#d5e3d8)", image: "assets/drones.jpg" },
+        { icon: "water", title: "Smart Irrigation", text: "AI-based irrigation scheduling for water optimisation.", visual: "linear-gradient(135deg,#2f7379,#9ad1be)", image: "assets/smart-irrigation.jpg" }
       ],
       groups: [
         { title: "Environmental Impact", items: [{ icon: "recycle", label: "Zero Waste Circular Economy" }, { icon: "leaf", label: "Low Carbon Footprint" }, { icon: "water", label: "Water Conservation" }, { icon: "shield", label: "Biodiversity Protection" }] },
@@ -242,7 +242,7 @@
       <header class="site-header">
         <div class="site-shell topbar">
           <a class="brand" href="index.html" aria-label="Deshi Chakra home">
-            <img src="assets/logo.svg" alt="">
+            <img src="assets/deshi-chakra-logo-new.png?v=2" alt="" style="width:48px;height:48px;object-fit:contain;">
             <span class="brand-title">DESHI<br>CHAKRA</span>
             <span class="brand-separator"></span>
             <span class="brand-kicker">A Self-Sustaining,<br>AI-Powered Agri Ecosystem</span>
@@ -314,7 +314,7 @@
           ${sectionTitle("How Deshi Chakra Works", "A circular model where every unit supports the next.")}
           <div class="working-layout">
             <figure class="diagram-card">
-              <img src="assets/logo.svg" alt="Deshi Chakra circular ecosystem diagram">
+              <img src="assets/deshi-chakra-ecosystem-diagram.png" alt="Deshi Chakra circular ecosystem diagram" style="width:100%;height:100%;object-fit:contain;">
             </figure>
             <div class="flow-band">
               <div class="flow-list">
@@ -354,20 +354,31 @@
     return `
       ${renderPageHero(page)}
       <section class="section">
-        <div class="site-shell split-layout">
-          <div class="feature-art">
+        <div class="site-shell ecosystem-layout">
+          <div class="feature-art feature-art-large">
             <img src="assets/ecosystem-masterplan.jpeg" alt="Deshi Chakra integrated smart gaushala master plan">
             <div class="caption-row">
               <span>Integrated smart gaushala master plan</span>
               <span>Every resource is utilised</span>
             </div>
           </div>
-          <div class="steps-grid">
+          <div class="steps-grid steps-grid-four">
             ${page.steps.map((step, index) => stepCard(step, index + 1)).join("")}
           </div>
         </div>
       </section>
-
+      <section class="section">
+        <div class="site-shell">
+          <div class="key-cta-section">
+            <h3 class="key-cta-title">KEY CTA</h3>
+            <div class="key-cta-links">
+              <a href="#" class="cta-link">Book a Visit</a>
+              <span class="cta-divider">|</span>
+              <a href="#" class="cta-link">Download Ecosystem Brochure</a>
+            </div>
+          </div>
+        </div>
+      </section>
     `;
   }
 
@@ -387,7 +398,17 @@
         <div class="site-shell">
           ${sectionTitle("Multiple Revenue Streams", "A diversified business model reduces dependency on a single source of income.")}
           <div class="grid four">
-            ${revenueStreams.map(item => `<article class="metric-card"><span class="icon-round">${icon(item.icon)}</span><strong>${item.title}</strong><span>${item.text}</span></article>`).join("")}
+            ${revenueStreams.map(item => {
+              let img = item.image;
+              if (item.title === "Eco Tourism") img = "assets/eco-tourism-revenue.png";
+              if (item.title === "Energy") img = "assets/energy-revenue.png";
+              if (item.title === "Energy (Biogas)") img = "assets/energy-biogas-revenue.png";
+              
+              const visual = img 
+                ? `<span class="icon-round has-img"><img src="${img}?v=3" alt="${item.title}"></span>` 
+                : `<span class="icon-round">${icon(item.icon)}</span>`;
+              return `<article class="metric-card">${visual}<strong>${item.title}</strong><span>${item.text}</span></article>`;
+            }).join("")}
           </div>
         </div>
       </section>
@@ -396,6 +417,48 @@
           ${sectionTitle("Financial Overview", "Indicative investment view for early-stage planning and partner discussions.")}
           <div class="finance-grid">
             ${page.finance.map(item => `<article class="finance-card"><strong>${item.value}</strong><span>${item.label}</span></article>`).join("")}
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="site-shell">
+          <div class="scalable-india-container">
+            <h2 class="scalable-title">SCALABLE ACROSS INDIA</h2>
+            <div class="scalable-layout">
+              <div class="scalable-map">
+                <img src="assets/india-map-points.jpg" alt="Map of India showing Deshi Chakra sites">
+              </div>
+              <div class="scalable-phases">
+                <div class="phase-item">
+                  <div class="phase-icon"><img src="assets/phase1.png" alt="Phase 1"></div>
+                  <div class="phase-text">
+                    <strong>Phase 1</strong>
+                    <span>1 - 5 Sites</span>
+                  </div>
+                </div>
+                <div class="phase-item">
+                  <div class="phase-icon"><img src="assets/phase2.png" alt="Phase 2"></div>
+                  <div class="phase-text">
+                    <strong>Phase 2</strong>
+                    <span>100+ Sites</span>
+                  </div>
+                </div>
+                <div class="phase-item">
+                  <div class="phase-icon"><img src="assets/phase3.jpg" alt="Phase 3"></div>
+                  <div class="phase-text">
+                    <strong>Phase 3</strong>
+                    <span>1000+ Sites</span>
+                  </div>
+                </div>
+                <div class="phase-item">
+                  <div class="phase-icon"><img src="assets/phase4.jpg" alt="Nationwide"></div>
+                  <div class="phase-text">
+                    <strong>Nationwide</strong>
+                    <span>Impact</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -422,7 +485,18 @@
           </form>
         </div>
       </section>
-
+      <section class="section">
+        <div class="site-shell">
+          <div class="key-cta-section">
+            <h3 class="key-cta-title">KEY CTA</h3>
+            <div class="key-cta-links">
+              <a href="#" class="cta-link">Download Investor Deck</a>
+              <span class="cta-divider">|</span>
+              <a href="#" class="cta-link">Schedule Meeting</a>
+            </div>
+          </div>
+        </div>
+      </section>
     `;
   }
 
@@ -465,7 +539,18 @@
           </div>
         </div>
       </section>
-
+      <section class="section">
+        <div class="site-shell">
+          <div class="key-cta-section">
+            <h3 class="key-cta-title">KEY CTA</h3>
+            <div class="key-cta-links">
+              <a href="#" class="cta-link">Partner with us</a>
+              <span class="cta-divider">|</span>
+              <a href="#" class="cta-link">Explore technology</a>
+            </div>
+          </div>
+        </div>
+      </section>
     `;
   }
 
@@ -496,7 +581,18 @@
           </div>
         </div>
       </section>
-
+      <section class="section">
+        <div class="site-shell">
+          <div class="key-cta-section">
+            <h3 class="key-cta-title">KEY CTA</h3>
+            <div class="key-cta-links">
+              <a href="#" class="cta-link">Connect with Founder</a>
+              <span class="cta-divider">|</span>
+              <a href="#" class="cta-link">Partner with us</a>
+            </div>
+          </div>
+        </div>
+      </section>
     `;
   }
 
@@ -539,7 +635,18 @@
           </aside>
         </div>
       </section>
-
+      <section class="section">
+        <div class="site-shell">
+          <div class="key-cta-section">
+            <h3 class="key-cta-title">KEY CTA</h3>
+            <div class="key-cta-links">
+              <a href="#" class="cta-link">Get in touch</a>
+              <span class="cta-divider">|</span>
+              <a href="#" class="cta-link">Become a partner</a>
+            </div>
+          </div>
+        </div>
+      </section>
     `;
   }
 
@@ -573,8 +680,9 @@
       <footer class="site-footer">
         <div class="site-shell footer-grid">
           <section class="closing-cta">
-            <strong>Together, Let's Build A Self-Reliant Rural India.</strong>
-            ${icon("leaf")}
+            <span class="cta-kicker"><span class="line"></span> Together, Let's Build <span class="line"></span></span>
+            <strong>A Self-Reliant<br>Rural India</strong>
+            <span class="cta-bottom-line"><span class="line"></span><span class="dot"></span><span class="line"></span></span>
           </section>
         </div>
       </footer>
@@ -601,7 +709,9 @@
 
   function revenueCard(item) {
     const visualClass = item.image ? "revenue-visual has-image" : "revenue-visual";
-    const imageStyle = item.image ? `--visual-bg:${item.visual}; --visual-image:url('${item.image}')` : `--visual-bg:${item.visual}`;
+    const imageStyle = item.image 
+      ? `background-image: linear-gradient(0deg, rgba(3, 38, 17, .14), rgba(3, 38, 17, .02)), url('${item.image}'); background-size: cover; background-position: center; background-repeat: no-repeat;` 
+      : `background: ${item.visual};`;
     return `
       <article class="revenue-card">
         <div class="${visualClass}" style="${imageStyle}"></div>
@@ -626,7 +736,9 @@
 
   function techCard(item) {
     const visualClass = item.image ? "tech-visual has-image" : "tech-visual";
-    const imageStyle = item.image ? `--visual-bg:${item.visual}; --visual-image:url('${item.image}')` : `--visual-bg:${item.visual}`;
+    const imageStyle = item.image 
+      ? `background-image: linear-gradient(0deg, rgba(3, 38, 17, .08), rgba(3, 38, 17, 0)), url('${item.image}'); background-size: cover; background-position: center;` 
+      : `--visual-bg:${item.visual}`;
     return `
       <article class="tech-card">
         <div class="${visualClass}" style="${imageStyle}">${item.image ? "" : icon(item.icon)}</div>
