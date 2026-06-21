@@ -59,7 +59,8 @@
     fb: '<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#1877F2"/><path d="M26.8 14.4h-2.9c-.9 0-1.5.6-1.5 1.6v2.7h4.4l-.6 4H22.4V33h-4V22.7h-2.8v-4h2.8v-2.8c0-3.2 2-5 4.9-5 1.4 0 2.8.2 2.8.2v3.3h-1.3Z" fill="white"/></svg>',
     instagram: '<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ig" cx="30%" cy="107%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="10%" stop-color="#fdf497"/><stop offset="50%" stop-color="#fd5949"/><stop offset="68%" stop-color="#d6249f"/><stop offset="100%" stop-color="#285AEB"/></radialGradient></defs><circle cx="22" cy="22" r="22" fill="url(#ig)"/><rect x="12" y="12" width="20" height="20" rx="6" fill="none" stroke="white" stroke-width="2.2"/><circle cx="22" cy="22" r="5" fill="none" stroke="white" stroke-width="2.2"/><circle cx="28.5" cy="15.5" r="1.6" fill="white"/></svg>',
     linkedin: '<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#0A66C2"/><path d="M15.5 18.5h3.8V30h-3.8V18.5ZM17.4 17c-1.3 0-2.2-.9-2.2-2s.9-2 2.2-2 2.2.9 2.2 2-.9 2-2.2 2ZM29.5 30H26v-5.7c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.9 1.4-.1.2-.1.5-.1.8V30H18.4s.1-11 0-11.5H22.2v1.5c.5-.8 1.4-1.8 3.3-1.8 2.4 0 4 1.5 4 4.8V30Z" fill="white"/></svg>',
-    youtube: '<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#FF0000"/><path d="M33 16.5s-.3-2-1.3-3c-1.2-1.3-2.6-1.3-3.2-1.4C25.7 12 22 12 22 12s-3.7 0-6.5.4c-.6.1-2 .2-3.2 1.4-1 1-1.3 3-1.3 3S11 18.9 11 22v1.8c0 2.2.2 4.7.2 4.7s.3 2 1.3 3c1.2 1.3 2.8 1.2 3.5 1.3C18.3 33 22 33 22 33s3.7-.1 6.5-.5c.6-.1 2-.2 3.2-1.4 1-1 1.3-3 1.3-3s.2-2.5.2-4.7V22c0-2.2 0-5.5 0-5.5ZM19.5 25.7v-7.5l7.5 3.8-7.5 3.7Z" fill="white"/></svg>'
+    youtube: '<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#FF0000"/><path d="M33 16.5s-.3-2-1.3-3c-1.2-1.3-2.6-1.3-3.2-1.4C25.7 12 22 12 22 12s-3.7 0-6.5.4c-.6.1-2 .2-3.2 1.4-1 1-1.3 3-1.3 3S11 18.9 11 22v1.8c0 2.2.2 4.7.2 4.7s.3 2 1.3 3c1.2 1.3 2.8 1.2 3.5 1.3C18.3 33 22 33 22 33s3.7-.1 6.5-.5c.6-.1 2-.2 3.2-1.4 1-1 1.3-3 1.3-3s.2-2.5.2-4.7V22c0-2.2 0-5.5 0-5.5ZM19.5 25.7v-7.5l7.5 3.8-7.5 3.7Z" fill="white"/></svg>',
+    close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>'
   };
 
   function icon(name) {
@@ -270,7 +271,9 @@
             <span class="brand-kicker">A Self-Sustaining,<br>AI-Powered Agri Ecosystem</span>
           </a>
           <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open navigation">${icon("menu")}</button>
+          <div class="nav-overlay" id="nav-overlay"></div>
           <nav class="site-nav" id="main-nav" aria-label="Main navigation">
+            <button class="nav-close" id="nav-close" type="button" aria-label="Close navigation">${icon("close")}</button>
             ${navItems.map(item => `<a class="${item.key === activeKey ? "is-active" : ""}" href="${item.href}">${item.label}</a>`).join("")}
           </nav>
         </div>
@@ -910,12 +913,30 @@
   function bindNav() {
     const toggle = document.querySelector(".nav-toggle");
     const nav = document.getElementById("main-nav");
+    const overlay = document.getElementById("nav-overlay");
+    const closeBtn = document.getElementById("nav-close");
     if (!toggle || !nav) return;
+
+    function openNav() {
+      toggle.setAttribute("aria-expanded", "true");
+      nav.classList.add("is-open");
+      if (overlay) overlay.classList.add("is-active");
+    }
+
+    function closeNav() {
+      toggle.setAttribute("aria-expanded", "false");
+      nav.classList.remove("is-open");
+      if (overlay) overlay.classList.remove("is-active");
+    }
+
     toggle.addEventListener("click", () => {
       const expanded = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!expanded));
-      nav.classList.toggle("is-open", !expanded);
+      if (expanded) closeNav();
+      else openNav();
     });
+
+    if (closeBtn) closeBtn.addEventListener("click", closeNav);
+    if (overlay) overlay.addEventListener("click", closeNav);
   }
 
   function bindForms() {

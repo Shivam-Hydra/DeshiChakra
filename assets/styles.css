@@ -64,7 +64,18 @@ input {
   z-index: 20;
   background: rgba(247, 244, 234, .94);
   border-bottom: 1px solid rgba(6, 63, 28, .14);
+}
+
+.site-header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   backdrop-filter: blur(18px);
+  z-index: -1;
+  pointer-events: none;
 }
 
 .topbar {
@@ -179,6 +190,11 @@ input {
   width: 22px;
   margin: auto;
   stroke: currentColor;
+}
+
+.nav-overlay,
+.nav-close {
+  display: none;
 }
 
 .home-hero {
@@ -1940,24 +1956,84 @@ p {
 
   .nav-toggle {
     display: grid;
+    position: relative;
+    z-index: 1001;
+  }
+
+  .nav-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .nav-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
   }
 
   .site-nav {
-    grid-column: 1 / -1;
-    width: 100%;
-    justify-self: stretch;
-    display: none;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-radius: 12px;
-    margin-bottom: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    width: 90%;
+    max-width: 320px;
+    background: var(--paper, #fffdf7);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 60px 24px 24px;
+    border-radius: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease, visibility 0.3s ease;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
   }
 
   .site-nav.is-open {
-    display: grid;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-close {
+    display: flex;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--green-950);
+  }
+
+  .nav-close svg {
+    width: 20px;
+    stroke: currentColor;
   }
 
   .site-nav a {
     border-radius: 8px;
+    justify-content: center;
+    text-align: center;
+    padding: 14px 18px;
+    font-size: 1.1rem;
+    height: auto;
+    min-height: 48px;
   }
 
   .proof-badges {
