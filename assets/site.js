@@ -528,10 +528,11 @@
     ];
 
     const govImpactData = [
-      { img: "assets/gov-policy.png", title: "Policy", label: "Alignment" },
-      { img: "assets/gov-makeinindia.png", title: "Make in India", label: "" },
       { img: "assets/gov-atmanirbhar.png", title: "Atmanirbhar", label: "Bharat" },
-      { img: "assets/gov-sdg.png", title: "Sustainable", label: "Development Goals" }
+      { img: "assets/gov-makeinindia.png", title: "Make in India", label: "" },
+      { img: "assets/gov-doublingfarmers.png", title: "Doubling Farmers", label: "Income" },
+      { img: "assets/gov-sdg.png", title: "Sustainable", label: "Development Goals" },
+      { img: "assets/gov-digitalindia.png", title: "Digital India", label: "" }
     ];
 
     const renderGrid = (items) => `
@@ -539,7 +540,7 @@
         ${items.map(item => `
           <div class="impact-circle-item">
             <div class="circle-icon-wrap">
-              <img src="${item.img}?v=5" alt="${item.title}">
+              <img src="${item.img}?v=7" alt="${item.title}">
             </div>
             <strong>${item.title}</strong>
             ${item.label ? `<span>${item.label}</span>` : ""}
