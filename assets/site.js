@@ -502,6 +502,52 @@
 
   function renderImpact() {
     const page = pages.impact;
+    
+    const ourImpactData = [
+      { img: "assets/impact-jobs.png", title: "200+", label: "Jobs Created" },
+      { img: "assets/impact-energy.png", title: "100%", label: "Renewable Energy" },
+      { img: "assets/impact-water.png", title: "70%", label: "Water Recycled" },
+      { img: "assets/impact-waste.png", title: "95%", label: "Waste Utilized" },
+      { img: "assets/impact-food.png", title: "Healthy Food", label: "for Communities" },
+      { img: "assets/impact-income.png", title: "Higher Income", label: "for Farmers" }
+    ];
+
+    const envImpactData = [
+      { img: "assets/env-waste.png", title: "Zero Waste", label: "Circular Economy" },
+      { img: "assets/env-carbon.png", title: "Low Carbon", label: "Footprint" },
+      { img: "assets/env-water.png", title: "Water", label: "Conservation" },
+      { img: "assets/env-biodiversity.png", title: "Biodiversity", label: "Protection" }
+    ];
+
+    const socImpactData = [
+      { img: "assets/soc-empower.png", title: "Empowering", label: "Farmers" },
+      { img: "assets/soc-skills.png", title: "Skill Development", label: "" },
+      { img: "assets/soc-employment.png", title: "Rural", label: "Employment" },
+      { img: "assets/soc-prosperity.png", title: "Rural", label: "Prosperity" },
+      { img: "assets/soc-communities.png", title: "Stronger", label: "Communities" }
+    ];
+
+    const govImpactData = [
+      { img: "assets/gov-policy.png", title: "Policy", label: "Alignment" },
+      { img: "assets/gov-makeinindia.png", title: "Make in India", label: "" },
+      { img: "assets/gov-atmanirbhar.png", title: "Atmanirbhar", label: "Bharat" },
+      { img: "assets/gov-sdg.png", title: "Sustainable", label: "Development Goals" }
+    ];
+
+    const renderGrid = (items) => `
+      <div class="impact-circle-grid">
+        ${items.map(item => `
+          <div class="impact-circle-item">
+            <div class="circle-icon-wrap">
+              <img src="${item.img}?v=5" alt="${item.title}">
+            </div>
+            <strong>${item.title}</strong>
+            ${item.label ? `<span>${item.label}</span>` : ""}
+          </div>
+        `).join("")}
+      </div>
+    `;
+
     return `
       ${renderPageHero(page)}
       <section class="section tight">
@@ -519,34 +565,39 @@
           </div>
         </div>
       </section>
-      <section class="section tight">
+
+      <section class="section tight" style="background: #FAF8F0;">
         <div class="site-shell">
-          ${sectionTitle("Our Impact", "Measurable benefits across jobs, energy, water, waste and farmer income.")}
-          ${renderImpactStrip()}
-        </div>
-      </section>
-      <section class="section tight">
-        <div class="site-shell">
-          <div class="impact-groups">
-            ${page.groups.map(group => `
-              <article class="impact-card">
-                <h3>${group.title}</h3>
-                <div class="pill-list">
-                  ${group.items.map(item => `<div class="impact-pill">${icon(item.icon)}<span>${item.label}</span></div>`).join("")}
-                </div>
-              </article>
-            `).join("")}
+          <div class="impact-redesign-section first">
+            <h2 class="impact-redesign-title">Our Impact</h2>
+            ${renderGrid(ourImpactData)}
+          </div>
+          
+          <div class="impact-redesign-section">
+            <h2 class="impact-redesign-title">Environmental Impact</h2>
+            ${renderGrid(envImpactData)}
+          </div>
+          
+          <div class="impact-redesign-section">
+            <h2 class="impact-redesign-title">Social Impact</h2>
+            ${renderGrid(socImpactData)}
+          </div>
+          
+          <div class="impact-redesign-section">
+            <h2 class="impact-redesign-title">Government Alignment</h2>
+            ${renderGrid(govImpactData)}
           </div>
         </div>
       </section>
+
       <section class="section">
         <div class="site-shell">
           <div class="key-cta-section">
             <h3 class="key-cta-title">KEY CTA</h3>
             <div class="key-cta-links">
-              <a href="#" class="cta-link">Partner with us</a>
+              <a href="${ctaHref('Partner with us')}" class="cta-link">Partner with us</a>
               <span class="cta-divider">|</span>
-              <a href="#" class="cta-link">Explore technology</a>
+              <a href="${ctaHref('Explore technology')}" class="cta-link">Explore technology</a>
             </div>
           </div>
         </div>
