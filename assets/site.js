@@ -511,7 +511,17 @@
             <div class="form-grid">
               <input type="text" name="name" placeholder="Full Name" aria-label="Full name" required>
               <input type="email" name="email" placeholder="Email Address" aria-label="Email address" required>
-              <input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone number" required>
+              <div class="phone-input-group">
+                <select name="country_code" aria-label="Country code" required>
+                  <option value="+91" selected>+91 (IN)</option>
+                  <option value="+1">+1 (US)</option>
+                  <option value="+44">+44 (UK)</option>
+                  <option value="+971">+971 (AE)</option>
+                  <option value="+65">+65 (SG)</option>
+                  <option value="+61">+61 (AU)</option>
+                </select>
+                <input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone number" required maxlength="10">
+              </div>
               <input type="text" name="organisation" placeholder="Organisation" aria-label="Organisation">
               <button class="btn" type="submit">Download Now ${icon("download")}</button>
               <div class="form-message" role="status"></div>
@@ -911,10 +921,50 @@
   function bindForms() {
     const form = document.querySelector(".js-investor-form");
     if (!form) return;
+
+    const phoneInput = form.querySelector('input[name="phone"]');
+    if (phoneInput) {
+      phoneInput.addEventListener("input", () => {
+        // Strip out non-digits
+        phoneInput.value = phoneInput.value.replace(/\D/g, "");
+      });
+    }
+
     form.addEventListener("submit", event => {
       event.preventDefault();
       const message = form.querySelector(".form-message");
-      message.textContent = "Thank you. The investor deck request is ready to be processed.";
+      if (!message) return;
+
+      const email = form.querySelector('input[name="email"]').value.trim();
+      const phone = phoneInput ? phoneInput.value.trim() : "";
+
+      // 1. Validation for Email containing @
+      if (!email.includes("@")) {
+        message.textContent = "Please enter a valid email address containing '@'.";
+        message.style.color = "#d9534f"; // Red error color
+        return;
+      }
+
+      // 2. Validation for Phone number (must be exactly 10 digits)
+      if (phone.length !== 10) {
+        message.textContent = "Phone number must be exactly 10 digits.";
+        message.style.color = "#d9534f"; // Red error color
+        return;
+      }
+
+      // Successful validation
+      message.textContent = "Thank you! Your download has started.";
+      message.style.color = "var(--green-800)";
+
+      // Create a simulated/actual file download
+      const link = document.createElement("a");
+      link.href = "assets/Deshi_Chakra_Investor_Deck.pdf";
+      link.download = "Deshi_Chakra_Investor_Deck.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Reset the form
       form.reset();
     });
   }
