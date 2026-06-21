@@ -59,14 +59,14 @@
   ];
 
   const revenueStreams = [
-    { icon: "cow", title: "Dairy & Milk Production", text: "High-quality milk, animal health and managed dairy output.", visual: "linear-gradient(135deg,#d8d2be,#8b6f4d)", image: "assets/dairy-revenue.png" },
-    { icon: "fish", title: "Fisheries & Aquaculture", text: "Solar water channels, oxygenated water flow and fish farming.", visual: "linear-gradient(135deg,#28747c,#8bc0b4)", image: "assets/fisheries-revenue.png" },
-    { icon: "greenhouse", title: "Greenhouse Produce", text: "Climate-controlled vegetables and premium produce.", visual: "linear-gradient(135deg,#2e7b43,#b1c85a)", image: "assets/greenhouse-revenue.png" },
-    { icon: "leaf", title: "Fruit Orchards & Agro Produce", text: "Seasonal fruit, orchards and crop diversity.", visual: "linear-gradient(135deg,#715b22,#d6a337)", image: "assets/orchards-revenue.png" },
-    { icon: "factory", title: "Value Added Products", text: "Processing, packaging and local product development.", visual: "linear-gradient(135deg,#a46d43,#ecd4a1)", image: "assets/valueadded-revenue.png" },
-    { icon: "leaf", title: "Eco Tourism", text: "Learning visits, rural experiences and ecosystem tours.", visual: "linear-gradient(135deg,#4e7b3d,#d2c46a)", image: "assets/eco-tourism-metric.png" },
-    { icon: "energy", title: "Energy", text: "Solar power integration for self-sustaining operations and surplus.", visual: "linear-gradient(135deg,#3b5f63,#b8d4ca)", image: "assets/energy-bolt.jpg" },
-    { icon: "dome", title: "Energy (Biogas)", text: "Renewable bio-gas from waste, lowering costs and providing organic manure.", visual: "linear-gradient(135deg,#94462c,#e2a24a)", image: "assets/dome-metric.png" }
+    { icon: "cow", title: "Dairy & Milk Production", text: "High-quality milk, animal health and managed dairy output.", visual: "linear-gradient(135deg,#d8d2be,#8b6f4d)", image: "assets/tiles/tile-smart-dairy-shed.jpg" },
+    { icon: "fish", title: "Fisheries & Aquaculture", text: "Solar water channels, oxygenated water flow and fish farming.", visual: "linear-gradient(135deg,#28747c,#8bc0b4)", image: "assets/tiles/tile-fish-channel.jpg" },
+    { icon: "greenhouse", title: "Greenhouse Produce", text: "Climate-controlled vegetables and premium produce.", visual: "linear-gradient(135deg,#2e7b43,#b1c85a)", image: "assets/tiles/tile-greenhouse.jpg" },
+    { icon: "leaf", title: "Fruit Orchards & Agro Produce", text: "Seasonal fruit, orchards and crop diversity.", visual: "linear-gradient(135deg,#715b22,#d6a337)", image: "assets/tiles/tile-fruit-belt.jpg" },
+    { icon: "factory", title: "Value Added Products", text: "Processing, packaging and local product development.", visual: "linear-gradient(135deg,#a46d43,#ecd4a1)", image: "assets/tiles/tile-dairy-processing.jpg" },
+    { icon: "market", title: "Retail & Farm Store", text: "On-site retail, direct pricing and consumer access.", visual: "linear-gradient(135deg,#94462c,#e2a24a)", image: "assets/tiles/tile-market.jpg" },
+    { icon: "truck", title: "E-Commerce & Delivery", text: "Transparent ordering, cold-chain movement and traceability.", visual: "linear-gradient(135deg,#3b5f63,#b8d4ca)", image: "assets/tiles/tile-ecommerce-delivery.jpg" },
+    { icon: "leaf", title: "Eco Tourism & Experience", text: "Learning visits, rural experiences and ecosystem tours.", visual: "linear-gradient(135deg,#4e7b3d,#d2c46a)", image: "assets/tiles/tile-eco-tourism.jpg" }
   ];
 
   const impactStats = [
@@ -384,6 +384,18 @@
 
   function renderInvestment() {
     const page = pages.investment;
+    
+    const investmentRevenueStreams = [
+      { title: "Dairy & Milk Production", text: "High-quality milk, animal health and managed dairy output.", image: "assets/dairy-revenue.png" },
+      { title: "Fisheries & Aquaculture", text: "Solar water channels, oxygenated water flow and fish farming.", image: "assets/fisheries-revenue.png" },
+      { title: "Greenhouse Produce", text: "Climate-controlled vegetables and premium produce.", image: "assets/greenhouse-revenue.png" },
+      { title: "Fruit Orchards & Agro Produce", text: "Seasonal fruit, orchards and crop diversity.", image: "assets/orchards-revenue.png" },
+      { title: "Value Added Products", text: "Processing, packaging and local product development.", image: "assets/valueadded-revenue.png" },
+      { title: "Eco Tourism", text: "Learning visits, rural experiences and ecosystem tours.", image: "assets/eco-tourism-revenue.png" },
+      { title: "Energy", text: "Solar power integration for self-sustaining operations and surplus.", image: "assets/energy-revenue.png" },
+      { title: "Energy (Biogas)", text: "Renewable bio-gas from waste, lowering costs and providing organic manure.", image: "assets/energy-biogas-revenue.png" }
+    ];
+
     return `
       ${renderPageHero(page)}
       <section class="section tight">
@@ -398,15 +410,11 @@
         <div class="site-shell">
           ${sectionTitle("Multiple Revenue Streams", "A diversified business model reduces dependency on a single source of income.")}
           <div class="grid four">
-            ${revenueStreams.map(item => {
-              let img = item.image;
-              if (item.title === "Eco Tourism") img = "assets/eco-tourism-revenue.png";
-              if (item.title === "Energy") img = "assets/energy-revenue.png";
-              if (item.title === "Energy (Biogas)") img = "assets/energy-biogas-revenue.png";
-              
+            ${investmentRevenueStreams.map(item => {
+              const img = item.image;
               const visual = img 
-                ? `<span class="icon-round has-img"><img src="${img}?v=3" alt="${item.title}"></span>` 
-                : `<span class="icon-round">${icon(item.icon)}</span>`;
+                ? `<span class="icon-round has-img"><img src="${img}?v=7" alt="${item.title}"></span>` 
+                : `<span class="icon-round">${icon(item.icon || "leaf")}</span>`;
               return `<article class="metric-card">${visual}<strong>${item.title}</strong><span>${item.text}</span></article>`;
             }).join("")}
           </div>
