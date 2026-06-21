@@ -193,8 +193,24 @@ input {
     linear-gradient(90deg, rgba(3, 38, 17, .58) 0%, rgba(3, 38, 17, .38) 34%, rgba(3, 38, 17, .12) 68%, rgba(3, 38, 17, .02) 100%),
     url("home-hero-farm.png");
   background-size: cover;
-  background-position: center;
+  background-position:
+    center,
+    calc(50% + var(--hero-shift-x, 0px)) calc(50% + var(--hero-shift-y, 0px));
   border-bottom: 1px solid var(--line);
+  transition: background-position .18s ease-out;
+}
+
+.home-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--hero-x, 54%) var(--hero-y, 38%), rgba(255, 255, 255, .16), transparent 24%),
+    linear-gradient(180deg, rgba(3, 38, 17, 0) 62%, rgba(3, 38, 17, .2) 100%);
+  opacity: .78;
+  transition: opacity .22s ease;
 }
 
 .home-hero::after {
@@ -272,6 +288,7 @@ p {
 }
 
 .btn {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -287,9 +304,14 @@ p {
   text-transform: uppercase;
   box-shadow: 0 12px 22px rgba(5, 47, 23, .18);
   cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
 }
 
 .btn svg {
+  position: relative;
+  z-index: 1;
   width: 18px;
   height: 18px;
   stroke: currentColor;
@@ -297,6 +319,17 @@ p {
 
 .btn:hover {
   background: var(--green-700);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 28px rgba(5, 47, 23, .23);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:focus-visible {
+  outline: 3px solid rgba(240, 190, 62, .45);
+  outline-offset: 3px;
 }
 
 .btn.secondary {
@@ -308,6 +341,16 @@ p {
 .btn.secondary:hover {
   background: #fff;
   border-color: var(--gold);
+}
+
+.btn-ripple {
+  position: absolute;
+  z-index: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .35);
+  transform: scale(0);
+  animation: button-ripple .62s ease-out forwards;
+  pointer-events: none;
 }
 
 .vision-modal {
@@ -866,6 +909,103 @@ p {
   background: #061226;
 }
 
+.feature-art.immersive-3d {
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  perspective: 1400px;
+}
+
+.immersive-3d {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --media-x: 0px;
+  --media-y: 0px;
+  --glow-x: 50%;
+  --glow-y: 50%;
+}
+
+.immersive-3d-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 22px 48px rgba(19, 50, 22, .12);
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateZ(0);
+  transform-style: preserve-3d;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  will-change: transform;
+}
+
+.immersive-3d-stage {
+  position: relative;
+  overflow: hidden;
+  background: #f7f4e9;
+  transform-style: preserve-3d;
+}
+
+.immersive-3d-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(255, 255, 255, .42), transparent 25%),
+    linear-gradient(135deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0) 44%);
+  opacity: 0;
+  mix-blend-mode: screen;
+  transition: opacity .22s ease;
+}
+
+.immersive-3d-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18), inset 0 -26px 44px rgba(3, 38, 17, .08);
+}
+
+.immersive-3d-media {
+  display: block;
+  transform: translate3d(var(--media-x), var(--media-y), 38px) scale(1.025);
+  transition: transform .24s ease;
+  will-change: transform;
+}
+
+.immersive-3d .caption-row {
+  position: relative;
+  z-index: 4;
+  transform: translateZ(26px);
+}
+
+.immersive-3d.is-active .immersive-3d-shell {
+  border-color: rgba(6, 63, 28, .24);
+  box-shadow: 0 34px 78px rgba(19, 50, 22, .21);
+}
+
+.immersive-3d.is-active .immersive-3d-stage::before {
+  opacity: .8;
+}
+
+.immersive-3d.is-pressed .immersive-3d-shell {
+  transition-duration: .08s;
+  box-shadow: 0 20px 46px rgba(19, 50, 22, .18);
+}
+
+.immersive-3d-dark .immersive-3d-stage {
+  background: #061226;
+}
+
+.immersive-3d-dark .immersive-3d-stage::before {
+  background:
+    radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(120, 211, 255, .32), transparent 24%),
+    linear-gradient(135deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, 0) 42%);
+}
+
 .caption-row {
   display: flex;
   align-items: center;
@@ -1178,6 +1318,26 @@ p {
   width: 100%;
   border-radius: 10px;
   box-shadow: var(--shadow);
+}
+
+.portrait-frame {
+  perspective: 1200px;
+}
+
+.portrait-frame .immersive-3d-shell {
+  border-radius: 10px;
+  box-shadow: 0 22px 54px rgba(19, 50, 22, .14);
+}
+
+.portrait-frame img {
+  display: block;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.portrait-frame .immersive-3d-stage::after {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14), inset 0 -34px 54px rgba(0, 0, 0, .16);
 }
 
 .portrait-caption {
@@ -1588,6 +1748,163 @@ p {
   height: 4px;
   border-radius: 50%;
   background-color: #97c25b;
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity .62s ease,
+    transform .62s cubic-bezier(.2, .7, .2, 1),
+    box-shadow .22s ease,
+    border-color .22s ease,
+    background-color .22s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.interactive-card {
+  position: relative;
+  transition:
+    transform .22s ease,
+    box-shadow .22s ease,
+    border-color .22s ease,
+    background-color .22s ease;
+}
+
+.interactive-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .42), rgba(255, 255, 255, 0) 42%);
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+
+.interactive-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(6, 63, 28, .22);
+  box-shadow: 0 20px 42px rgba(19, 50, 22, .13);
+}
+
+.interactive-card:hover::before {
+  opacity: 1;
+}
+
+.interactive-card:focus-within {
+  border-color: var(--green-700);
+  box-shadow: 0 0 0 4px rgba(141, 166, 63, .18), 0 18px 36px rgba(19, 50, 22, .1);
+}
+
+.flow-node .icon-round {
+  transition: transform .28s ease, box-shadow .28s ease, background-color .28s ease;
+}
+
+.flow-node:hover .icon-round {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow: 0 10px 22px rgba(6, 63, 28, .13);
+  background: #fff9e8;
+}
+
+.flow-node:not(:last-child)::after {
+  transform-origin: left center;
+  animation: flow-arrow 2.8s ease-in-out infinite;
+}
+
+.home-hero .hero-eyebrow,
+.home-hero h1,
+.home-hero .hero-lead,
+.home-hero .hero-lines,
+.home-hero .button-row {
+  animation: hero-copy-in .72s cubic-bezier(.2, .7, .2, 1) both;
+}
+
+.home-hero h1 {
+  animation-delay: .08s;
+}
+
+.home-hero .hero-lead {
+  animation-delay: .15s;
+}
+
+.home-hero .hero-lines {
+  animation-delay: .22s;
+}
+
+.home-hero .button-row {
+  animation-delay: .3s;
+}
+
+.vision-dialog {
+  animation-duration: .28s;
+}
+
+@keyframes hero-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes button-ripple {
+  to {
+    opacity: 0;
+    transform: scale(2.4);
+  }
+}
+
+@keyframes flow-arrow {
+  0%,
+  100% {
+    transform: scaleX(.55);
+    opacity: .32;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+  }
+
+  .interactive-card:hover,
+  .btn:hover {
+    transform: none;
+  }
+
+  .immersive-3d-shell,
+  .immersive-3d-media,
+  .immersive-3d .caption-row {
+    transform: none !important;
+  }
+
+  .immersive-3d-stage::before {
+    opacity: 0 !important;
+  }
 }
 
 @media (max-width: 1120px) {

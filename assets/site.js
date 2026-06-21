@@ -252,6 +252,7 @@
     bindNav();
     bindForms();
     bindVisionModal();
+    initInteractions();
     if (pageKey === "home") {
       bindHomeAnimation();
     }
@@ -376,11 +377,15 @@
       ${renderPageHero(page)}
       <section class="section">
         <div class="site-shell ecosystem-layout">
-          <div class="feature-art feature-art-large">
-            <img src="assets/ecosystem-masterplan.jpeg" alt="Deshi Chakra integrated smart gaushala master plan">
-            <div class="caption-row">
-              <span>Integrated smart gaushala master plan</span>
-              <span>Every resource is utilised</span>
+          <div class="feature-art feature-art-large immersive-3d" data-tilt-card>
+            <div class="immersive-3d-shell">
+              <div class="immersive-3d-stage">
+                <img class="immersive-3d-media" src="assets/ecosystem-masterplan.jpeg" alt="Deshi Chakra integrated smart gaushala master plan">
+              </div>
+              <div class="caption-row">
+                <span>Integrated smart gaushala master plan</span>
+                <span>Every resource is utilised</span>
+              </div>
             </div>
           </div>
           <div class="steps-grid steps-grid-four">
@@ -583,11 +588,15 @@
       <section class="section tight">
         <div class="site-shell">
           ${sectionTitle("Technology That Powers Operations", "AI, sensors, drones and irrigation systems keep the ecosystem measurable and efficient.")}
-          <div class="feature-art feature-art-wide">
-            <img src="assets/impact-technology-panel.jpeg" alt="Deshi Chakra impact and technology dashboard">
-            <div class="caption-row">
-              <span>Impact & technology dashboard</span>
-              <span>AI-powered, IoT-enabled, sustainable</span>
+          <div class="feature-art feature-art-wide immersive-3d immersive-3d-dark" data-tilt-card>
+            <div class="immersive-3d-shell">
+              <div class="immersive-3d-stage">
+                <img class="immersive-3d-media" src="assets/impact-technology-panel.jpeg" alt="Deshi Chakra impact and technology dashboard">
+              </div>
+              <div class="caption-row">
+                <span>Impact & technology dashboard</span>
+                <span>AI-powered, IoT-enabled, sustainable</span>
+              </div>
             </div>
           </div>
           <div class="tech-grid">
@@ -642,7 +651,13 @@
       <section class="section">
         <div class="site-shell founder-layout">
           <aside class="portrait-panel">
-            <img src="assets/founder-sudheesh.png" alt="Sudheesh Nandan Singh">
+            <div class="portrait-frame immersive-3d" data-tilt-card>
+              <div class="immersive-3d-shell">
+                <div class="immersive-3d-stage">
+                  <img class="immersive-3d-media" src="assets/founder-sudheesh.png" alt="Sudheesh Nandan Singh">
+                </div>
+              </div>
+            </div>
             <div class="portrait-caption">
               <strong>${page.name}</strong>
               <span>${page.role}</span>
@@ -996,6 +1011,253 @@
       if (event.key === "ArrowRight") {
         setVideo(activeIndex + 1);
       }
+    });
+  }
+
+  function initInteractions() {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    prepareScrollReveal(reducedMotion);
+    animateCounters(reducedMotion);
+    bindHeroMotion(reducedMotion);
+    bindButtonRipples(reducedMotion);
+    bindImmersive3D(reducedMotion);
+    bindInteractiveCards();
+  }
+
+  function prepareScrollReveal(reducedMotion) {
+    const revealSelector = [
+      ".section-title",
+      ".page-hero-inner",
+      ".metric-card",
+      ".revenue-card",
+      ".flow-node",
+      ".feature-art",
+      ".step-card",
+      ".mini-card",
+      ".finance-card",
+      ".form-card",
+      ".tech-card",
+      ".impact-card",
+      ".impact-circle-item",
+      ".contact-card",
+      ".bio-copy",
+      ".quote-panel",
+      ".portrait-panel",
+      ".key-cta-section",
+      ".scalable-map",
+      ".phase-item",
+      ".closing-cta"
+    ].join(",");
+
+    const revealItems = Array.from(document.querySelectorAll(revealSelector));
+    revealItems.forEach((item, index) => {
+      item.classList.add("reveal-on-scroll");
+      item.style.setProperty("--reveal-delay", `${Math.min(index % 9, 8) * 45}ms`);
+    });
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      revealItems.forEach(item => item.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: "0px 0px -8% 0px"
+    });
+
+    revealItems.forEach(item => observer.observe(item));
+  }
+
+  function animateCounters(reducedMotion) {
+    const counters = Array.from(document.querySelectorAll([
+      ".metric-card strong",
+      ".impact-stat strong",
+      ".finance-card strong",
+      ".impact-circle-item strong"
+    ].join(","))).filter(element => /^(\d+)([+%])?$/.test(element.textContent.trim()));
+
+    if (!counters.length) return;
+
+    function runCounter(element) {
+      if (element.dataset.counterDone === "true") return;
+
+      const finalText = element.textContent.trim();
+      const match = finalText.match(/^(\d+)([+%])?$/);
+      if (!match) return;
+
+      element.dataset.counterDone = "true";
+      const target = Number(match[1]);
+      const suffix = match[2] || "";
+
+      if (reducedMotion) {
+        element.textContent = finalText;
+        return;
+      }
+
+      const duration = Math.min(1200, 620 + target * 5);
+      const start = performance.now();
+      element.textContent = `0${suffix}`;
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        element.textContent = `${Math.round(target * eased)}${suffix}`;
+
+        if (progress < 1) {
+          window.requestAnimationFrame(tick);
+        } else {
+          element.textContent = finalText;
+        }
+      }
+
+      window.requestAnimationFrame(tick);
+    }
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      counters.forEach(runCounter);
+      return;
+    }
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        runCounter(entry.target);
+        observer.unobserve(entry.target);
+      });
+    }, {
+      threshold: 0.55
+    });
+
+    counters.forEach(counter => observer.observe(counter));
+  }
+
+  function bindHeroMotion(reducedMotion) {
+    const hero = document.querySelector(".home-hero");
+    if (!hero || reducedMotion) return;
+
+    hero.addEventListener("pointermove", event => {
+      if (window.innerWidth <= 860) return;
+
+      const rect = hero.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width) * 100;
+      const y = ((event.clientY - rect.top) / rect.height) * 100;
+      const shiftX = (x - 50) * 0.12;
+      const shiftY = (y - 50) * 0.08;
+
+      hero.style.setProperty("--hero-x", `${x.toFixed(2)}%`);
+      hero.style.setProperty("--hero-y", `${y.toFixed(2)}%`);
+      hero.style.setProperty("--hero-shift-x", `${shiftX.toFixed(2)}px`);
+      hero.style.setProperty("--hero-shift-y", `${shiftY.toFixed(2)}px`);
+    });
+
+    hero.addEventListener("pointerleave", () => {
+      hero.style.removeProperty("--hero-x");
+      hero.style.removeProperty("--hero-y");
+      hero.style.removeProperty("--hero-shift-x");
+      hero.style.removeProperty("--hero-shift-y");
+    });
+  }
+
+  function bindButtonRipples(reducedMotion) {
+    if (reducedMotion) return;
+
+    document.querySelectorAll(".btn").forEach(button => {
+      button.addEventListener("pointerdown", event => {
+        const rect = button.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        const ripple = document.createElement("span");
+        ripple.className = "btn-ripple";
+        ripple.style.width = `${size}px`;
+        ripple.style.height = `${size}px`;
+        ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
+        ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
+        button.appendChild(ripple);
+        window.setTimeout(() => ripple.remove(), 650);
+      });
+    });
+  }
+
+  function bindImmersive3D(reducedMotion) {
+    const cards = Array.from(document.querySelectorAll("[data-tilt-card]"));
+    if (!cards.length) return;
+
+    cards.forEach(card => {
+      card.classList.add("is-3d-ready");
+
+      if (reducedMotion) return;
+
+      function updateTilt(event) {
+        const rect = card.getBoundingClientRect();
+        const pointerX = (event.clientX - rect.left) / rect.width;
+        const pointerY = (event.clientY - rect.top) / rect.height;
+        const clampedX = Math.min(Math.max(pointerX, 0), 1);
+        const clampedY = Math.min(Math.max(pointerY, 0), 1);
+        const rotateX = (0.5 - clampedY) * 10;
+        const rotateY = (clampedX - 0.5) * 12;
+        const mediaX = (clampedX - 0.5) * -14;
+        const mediaY = (clampedY - 0.5) * -12;
+
+        card.classList.add("is-active");
+        card.style.setProperty("--tilt-x", `${rotateX.toFixed(2)}deg`);
+        card.style.setProperty("--tilt-y", `${rotateY.toFixed(2)}deg`);
+        card.style.setProperty("--media-x", `${mediaX.toFixed(2)}px`);
+        card.style.setProperty("--media-y", `${mediaY.toFixed(2)}px`);
+        card.style.setProperty("--glow-x", `${(clampedX * 100).toFixed(2)}%`);
+        card.style.setProperty("--glow-y", `${(clampedY * 100).toFixed(2)}%`);
+      }
+
+      function resetTilt() {
+        card.classList.remove("is-active", "is-pressed");
+        card.style.setProperty("--tilt-x", "0deg");
+        card.style.setProperty("--tilt-y", "0deg");
+        card.style.setProperty("--media-x", "0px");
+        card.style.setProperty("--media-y", "0px");
+        card.style.setProperty("--glow-x", "50%");
+        card.style.setProperty("--glow-y", "50%");
+      }
+
+      card.addEventListener("pointermove", updateTilt);
+      card.addEventListener("pointerenter", updateTilt);
+      card.addEventListener("pointerleave", resetTilt);
+      card.addEventListener("pointercancel", resetTilt);
+      card.addEventListener("pointerdown", event => {
+        updateTilt(event);
+        card.classList.add("is-pressed");
+      });
+      card.addEventListener("pointerup", event => {
+        card.classList.remove("is-pressed");
+        if (event.pointerType !== "mouse") {
+          window.setTimeout(resetTilt, 120);
+        }
+      });
+
+      resetTilt();
+    });
+  }
+
+  function bindInteractiveCards() {
+    const cardSelector = [
+      ".metric-card",
+      ".revenue-card",
+      ".content-card",
+      ".impact-card",
+      ".contact-card",
+      ".finance-card",
+      ".mini-card",
+      ".step-card",
+      ".tech-card",
+      ".phase-item"
+    ].join(",");
+
+    document.querySelectorAll(cardSelector).forEach(card => {
+      card.classList.add("interactive-card");
     });
   }
 
