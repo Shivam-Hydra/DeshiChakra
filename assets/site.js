@@ -40,7 +40,11 @@
     press: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h8M8 17h5"/></svg>',
     play: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4V8Z" fill="currentColor" stroke="none"/></svg>',
     download: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>',
-    menu: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>'
+    menu: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>',
+    aim: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M12 4v4M12 16v4M4 12h4M16 12h4"/></svg>',
+    temple: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M2 21h20M2 11h20L12 3 2 11Z"/><rect x="5" y="11" width="3" height="10"/><rect x="10.5" y="11" width="3" height="10"/><rect x="16" y="11" width="3" height="10"/></svg>',
+    community: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V21H3z"/><circle cx="12" cy="11.5" r="2"/><path d="M9 21v-1.5a3 3 0 0 1 6 0V21"/><circle cx="6.5" cy="14.5" r="1.5"/><circle cx="17.5" cy="14.5" r="1.5"/></svg>',
+    camera: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg>'
   };
 
   function icon(name) {
@@ -200,11 +204,11 @@
       ],
       cta: ["Get In Touch", "Become a Partner"],
       contacts: [
-        { icon: "rupee", title: "Investor Relations", text: "For investment opportunities and financial partnership.", email: "invest@deshichakra.in", phone: "+91 96765 43210" },
-        { icon: "bank", title: "Government Partnerships", text: "For policy collaboration and rural development projects.", email: "partnership@deshichakra.in", phone: "+91 96765 43211" },
-        { icon: "franchise", title: "Franchise / FOCO Partnership", text: "Join our FOCO network and expand together.", email: "franchise@deshichakra.in", phone: "+91 96765 43212" },
+        { icon: "aim", title: "Investor Relations", text: "For investment opportunities and financial partnership.", email: "invest@deshichakra.in", phone: "+91 96765 43210" },
+        { icon: "temple", title: "Government Partnerships", text: "For policy collaboration and rural development projects.", email: "partnership@deshichakra.in", phone: "+91 96765 43211" },
+        { icon: "community", title: "Franchise / FOCO Partnership", text: "Join our FOCO network and expand together.", email: "franchise@deshichakra.in", phone: "+91 96765 43212" },
         { icon: "user", title: "Farm Operations", text: "For operational queries and farm visits.", email: "operations@deshichakra.in", phone: "+91 96765 43213" },
-        { icon: "press", title: "Media & Press", text: "For media inquiries and press releases.", email: "media@deshichakra.in", phone: "+91 96765 43214" }
+        { icon: "camera", title: "Media & Press", text: "For media inquiries and press releases.", email: "media@deshichakra.in", phone: "+91 96765 43214" }
       ]
     }
   };

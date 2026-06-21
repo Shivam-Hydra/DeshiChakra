@@ -375,10 +375,16 @@ p {
 }
 
 .metric-card .icon-round,
-.contact-card .icon-round,
 .impact-card .icon-round {
   width: 42px;
   height: 42px;
+}
+
+.contact-card .icon-round {
+  width: 52px;
+  height: 52px;
+  background: #e3effb;
+  color: #1559be;
 }
 
 .metric-card strong {
@@ -1090,7 +1096,7 @@ p {
 
 .contact-card {
   display: grid;
-  grid-template-columns: 54px 1fr;
+  grid-template-columns: 64px 1fr;
   gap: 16px;
   align-items: start;
   padding: 19px;
