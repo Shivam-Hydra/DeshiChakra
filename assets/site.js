@@ -8,6 +8,17 @@
     { key: "contact", label: "Contact / Partners", href: "contact.html" }
   ];
 
+  const visionVideos = [
+    {
+      id: "EngW7tLk6R8",
+      title: "Deshi Chakra Vision Film 1"
+    },
+    {
+      id: "D0UnqGm_miA",
+      title: "Deshi Chakra Vision Film 2"
+    }
+  ];
+
   const iconSvg = {
     leaf: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 21c7 0 14-7 14-14V3h-4C8 3 3 8 3 15c0 2 1 4 2 6Z"/><path d="M3 21c4-5 8-8 14-10"/></svg>',
     recycle: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="m7 19-4-7 4-7"/><path d="M3 12h12"/><path d="m17 5 4 7-4 7"/><path d="M21 12H9"/></svg>',
@@ -237,8 +248,10 @@
     renderHeader(pageKey);
     renderPage(pageKey);
     renderFooter();
+    renderVisionModal();
     bindNav();
     bindForms();
+    bindVisionModal();
     if (pageKey === "home") {
       bindHomeAnimation();
     }
@@ -304,7 +317,7 @@
             <span>Direct Market Access - Franchising</span>
           </div>
           <div class="button-row">
-            <a class="btn" href="#vision">${icon("play")}Watch Vision Film</a>
+            <button class="btn" type="button" data-video-open>${icon("play")}Watch Vision Film</button>
             <a class="btn secondary" href="ecosystem.html">Explore Ecosystem</a>
           </div>
         </div>
@@ -759,6 +772,45 @@
     `;
   }
 
+  function renderVisionModal() {
+    if (document.getElementById("vision-modal")) return;
+
+    document.body.insertAdjacentHTML("beforeend", `
+      <div class="vision-modal" id="vision-modal" aria-hidden="true">
+        <div class="vision-dialog" role="dialog" aria-modal="true" aria-labelledby="vision-modal-title">
+          <button class="vision-close" type="button" data-video-close aria-label="Close video">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" aria-hidden="true">
+              <path d="M6 6l12 12M18 6 6 18"></path>
+            </svg>
+          </button>
+          <div class="vision-header">
+            <span class="vision-kicker">Vision Film</span>
+            <h2 id="vision-modal-title">Deshi Chakra Vision Film</h2>
+            <span class="vision-counter" data-video-counter>1 / 2</span>
+          </div>
+          <div class="vision-frame-shell" data-video-stage>
+            <iframe
+              data-video-frame
+              title="Deshi Chakra Vision Film"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <button class="vision-arrow vision-arrow-prev" type="button" data-video-prev aria-label="Previous video">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" aria-hidden="true">
+              <path d="M15 18 9 12l6-6"></path>
+            </svg>
+          </button>
+          <button class="vision-arrow vision-arrow-next" type="button" data-video-next aria-label="Next video">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" aria-hidden="true">
+              <path d="m9 18 6-6-6-6"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    `);
+  }
+
   function sectionTitle(title, subtitle) {
     return `<div class="section-title"><h2>${title}</h2><p>${subtitle}</p></div>`;
   }
@@ -849,6 +901,101 @@
       const message = form.querySelector(".form-message");
       message.textContent = "Thank you. The investor deck request is ready to be processed.";
       form.reset();
+    });
+  }
+
+  function bindVisionModal() {
+    const modal = document.getElementById("vision-modal");
+    if (!modal) return;
+
+    const frame = modal.querySelector("[data-video-frame]");
+    const stage = modal.querySelector("[data-video-stage]");
+    const title = modal.querySelector("#vision-modal-title");
+    const counter = modal.querySelector("[data-video-counter]");
+    const closeButton = modal.querySelector("[data-video-close]");
+    const triggers = document.querySelectorAll("[data-video-open]");
+    let activeIndex = 0;
+    let lastFocused = null;
+
+    function videoSrc(videoId) {
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1`;
+    }
+
+    function setVideo(index, smooth = true) {
+      activeIndex = (index + visionVideos.length) % visionVideos.length;
+      const video = visionVideos[activeIndex];
+
+      if (smooth) {
+        stage.classList.add("is-switching");
+      }
+
+      window.setTimeout(() => {
+        title.textContent = video.title;
+        counter.textContent = `${activeIndex + 1} / ${visionVideos.length}`;
+        frame.title = video.title;
+        frame.src = videoSrc(video.id);
+        stage.classList.remove("is-switching");
+      }, smooth ? 140 : 0);
+    }
+
+    function openModal(startIndex = 0) {
+      lastFocused = document.activeElement;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      setVideo(startIndex, false);
+      window.setTimeout(() => closeButton.focus(), 50);
+    }
+
+    function closeModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      frame.src = "";
+      stage.classList.remove("is-switching");
+
+      if (lastFocused && typeof lastFocused.focus === "function") {
+        lastFocused.focus();
+      }
+    }
+
+    triggers.forEach(trigger => {
+      trigger.addEventListener("click", event => {
+        event.preventDefault();
+        openModal(0);
+      });
+    });
+
+    modal.querySelector("[data-video-prev]").addEventListener("click", () => {
+      setVideo(activeIndex - 1);
+    });
+
+    modal.querySelector("[data-video-next]").addEventListener("click", () => {
+      setVideo(activeIndex + 1);
+    });
+
+    closeButton.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", event => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (!modal.classList.contains("is-open")) return;
+
+      if (event.key === "Escape") {
+        closeModal();
+      }
+
+      if (event.key === "ArrowLeft") {
+        setVideo(activeIndex - 1);
+      }
+
+      if (event.key === "ArrowRight") {
+        setVideo(activeIndex + 1);
+      }
     });
   }
 

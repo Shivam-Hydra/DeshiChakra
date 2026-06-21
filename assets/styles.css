@@ -32,6 +32,10 @@ body {
   line-height: 1.55;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -282,6 +286,7 @@ p {
   font-weight: 900;
   text-transform: uppercase;
   box-shadow: 0 12px 22px rgba(5, 47, 23, .18);
+  cursor: pointer;
 }
 
 .btn svg {
@@ -303,6 +308,165 @@ p {
 .btn.secondary:hover {
   background: #fff;
   border-color: var(--gold);
+}
+
+.vision-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background: rgba(0, 0, 0, .86);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .24s ease, visibility .24s ease;
+}
+
+.vision-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.vision-dialog {
+  position: relative;
+  width: min(1080px, 100%);
+  border-radius: 8px;
+  background: #07110b;
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, .55);
+  color: #fff;
+  transform: translateY(18px) scale(.98);
+  opacity: 0;
+  transition: transform .26s ease, opacity .26s ease;
+}
+
+.vision-modal.is-open .vision-dialog {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.vision-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 18px;
+  align-items: center;
+  padding: 18px 62px 16px 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.vision-kicker {
+  color: #f0cf62;
+  font-size: .74rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.vision-header h2 {
+  grid-column: 1;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.05rem, 2.1vw, 1.55rem);
+  line-height: 1.15;
+  font-weight: 900;
+}
+
+.vision-counter {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+  justify-self: end;
+  min-width: 54px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .1);
+  color: rgba(255, 255, 255, .84);
+  text-align: center;
+  font-size: .8rem;
+  font-weight: 900;
+}
+
+.vision-frame-shell {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+
+.vision-frame-shell iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 1;
+  transition: opacity .18s ease;
+}
+
+.vision-frame-shell.is-switching iframe {
+  opacity: .16;
+}
+
+.vision-close,
+.vision-arrow {
+  appearance: none;
+  border: 0;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.vision-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  background: #fff;
+  color: #052f17;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .36);
+}
+
+.vision-close:hover {
+  background: #f1d56f;
+}
+
+.vision-close svg,
+.vision-arrow svg {
+  width: 22px;
+  height: 22px;
+  stroke: currentColor;
+}
+
+.vision-arrow {
+  position: absolute;
+  top: 58%;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, .13);
+  border: 1px solid rgba(255, 255, 255, .24);
+  backdrop-filter: blur(10px);
+  transform: translateY(-50%);
+  transition: background .18s ease, transform .18s ease;
+}
+
+.vision-arrow:hover {
+  background: rgba(255, 255, 255, .24);
+  transform: translateY(-50%) scale(1.04);
+}
+
+.vision-arrow-prev {
+  left: -72px;
+}
+
+.vision-arrow-next {
+  right: -72px;
 }
 
 .section {
@@ -1524,6 +1688,33 @@ p {
     height: 78px;
     font-size: 1.75rem;
   }
+
+  .vision-modal {
+    padding: 18px;
+  }
+
+  .vision-close {
+    top: -14px;
+    right: -10px;
+  }
+
+  .vision-arrow {
+    top: auto;
+    bottom: -68px;
+    transform: none;
+  }
+
+  .vision-arrow:hover {
+    transform: scale(1.04);
+  }
+
+  .vision-arrow-prev {
+    left: calc(50% - 58px);
+  }
+
+  .vision-arrow-next {
+    right: calc(50% - 58px);
+  }
 }
 
 @media (max-width: 640px) {
@@ -1615,6 +1806,17 @@ p {
 
   .footer-panel {
     padding: 18px;
+  }
+
+  .vision-header {
+    grid-template-columns: 1fr;
+    padding: 16px 48px 14px 16px;
+  }
+
+  .vision-counter {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
   }
 }
 
