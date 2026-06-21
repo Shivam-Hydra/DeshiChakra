@@ -44,7 +44,11 @@
     aim: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/><path d="M12 4v4M12 16v4M4 12h4M16 12h4"/></svg>',
     temple: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M2 21h20M2 11h20L12 3 2 11Z"/><rect x="5" y="11" width="3" height="10"/><rect x="10.5" y="11" width="3" height="10"/><rect x="16" y="11" width="3" height="10"/></svg>',
     community: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 10.5 12 3l9 7.5V21H3z"/><circle cx="12" cy="11.5" r="2"/><path d="M9 21v-1.5a3 3 0 0 1 6 0V21"/><circle cx="6.5" cy="14.5" r="1.5"/><circle cx="17.5" cy="14.5" r="1.5"/></svg>',
-    camera: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg>'
+    camera: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3Z"/><circle cx="12" cy="13" r="3"/></svg>',
+    fb: '<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#1877F2"/><path d="M26.8 14.4h-2.9c-.9 0-1.5.6-1.5 1.6v2.7h4.4l-.6 4H22.4V33h-4V22.7h-2.8v-4h2.8v-2.8c0-3.2 2-5 4.9-5 1.4 0 2.8.2 2.8.2v3.3h-1.3Z" fill="white"/></svg>',
+    instagram: '<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ig" cx="30%" cy="107%" r="130%"><stop offset="0%" stop-color="#fdf497"/><stop offset="10%" stop-color="#fdf497"/><stop offset="50%" stop-color="#fd5949"/><stop offset="68%" stop-color="#d6249f"/><stop offset="100%" stop-color="#285AEB"/></radialGradient></defs><circle cx="22" cy="22" r="22" fill="url(#ig)"/><rect x="12" y="12" width="20" height="20" rx="6" fill="none" stroke="white" stroke-width="2.2"/><circle cx="22" cy="22" r="5" fill="none" stroke="white" stroke-width="2.2"/><circle cx="28.5" cy="15.5" r="1.6" fill="white"/></svg>',
+    linkedin: '<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#0A66C2"/><path d="M15.5 18.5h3.8V30h-3.8V18.5ZM17.4 17c-1.3 0-2.2-.9-2.2-2s.9-2 2.2-2 2.2.9 2.2 2-.9 2-2.2 2ZM29.5 30H26v-5.7c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.9 1.4-.1.2-.1.5-.1.8V30H18.4s.1-11 0-11.5H22.2v1.5c.5-.8 1.4-1.8 3.3-1.8 2.4 0 4 1.5 4 4.8V30Z" fill="white"/></svg>',
+    youtube: '<svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="22" fill="#FF0000"/><path d="M33 16.5s-.3-2-1.3-3c-1.2-1.3-2.6-1.3-3.2-1.4C25.7 12 22 12 22 12s-3.7 0-6.5.4c-.6.1-2 .2-3.2 1.4-1 1-1.3 3-1.3 3S11 18.9 11 22v1.8c0 2.2.2 4.7.2 4.7s.3 2 1.3 3c1.2 1.3 2.8 1.2 3.5 1.3C18.3 33 22 33 22 33s3.7-.1 6.5-.5c.6-.1 2-.2 3.2-1.4 1-1 1.3-3 1.3-3s.2-2.5.2-4.7V22c0-2.2 0-5.5 0-5.5ZM19.5 25.7v-7.5l7.5 3.8-7.5 3.7Z" fill="white"/></svg>'
   };
 
   function icon(name) {
@@ -690,10 +694,10 @@
             <div class="social-panel">
               <h2>Follow Us</h2>
               <div class="social-icons" aria-label="Social links">
-                <a href="#" aria-label="Facebook">${icon("globe")}</a>
-                <a href="#" aria-label="Instagram">${icon("leaf")}</a>
-                <a href="#" aria-label="LinkedIn">${icon("user")}</a>
-                <a href="#" aria-label="YouTube">${icon("play")}</a>
+                <a href="#" aria-label="Facebook" class="social-brand">${icon("fb")}</a>
+                <a href="#" aria-label="Instagram" class="social-brand">${icon("instagram")}</a>
+                <a href="#" aria-label="LinkedIn" class="social-brand">${icon("linkedin")}</a>
+                <a href="#" aria-label="YouTube" class="social-brand">${icon("youtube")}</a>
               </div>
             </div>
           </aside>
